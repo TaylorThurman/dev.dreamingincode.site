@@ -1,0 +1,35 @@
+# serverless.yml
+service: serverless-side-rendering-vue-nuxt
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${self:custom.secrets.NODE_ENV}
+  region: us-east-2
+  environment:
+    NODE_ENV: ${self:custom.secrets.NODE_ENV
+
+functions:
+  nuxt:
+    handler: index.nuxt
+    events:
+      - http: ANY /
+      - http: ANY /{proxy+}
+
+plugins:
+  - serverless-apigw-binary
+  - serverless-domain-manager
+  - serverless-offline
+
+custom:
+  secrets: ${file(secrets.json)}
+  apigwBinary:
+    types:
+      - '*/*'
+  customDomain:
+    domainName: ${self:custom.secrets.DOMAIN}
+    basePath: ''
+    stage: ${self:custom.secrets.NODE_ENV}
+    createRoute53Record: true
+    endpointType: 'regional'
+    certificateArn: "arn:aws:acm:us-east-2:696101305486:certificate/4e7ba749-bb3f-451a-87bb-93824a32f9c0"
