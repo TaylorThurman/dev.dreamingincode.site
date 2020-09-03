@@ -46,10 +46,4 @@
         margin: 10px 0 0 0;
         font-size: 36px;
     }
-
-    @media screen and (max-width: 480px) {
-        .overlay {
-            width: 50%;
-        }
-    }
 </style>

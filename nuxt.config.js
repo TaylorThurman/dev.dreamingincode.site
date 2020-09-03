@@ -1,6 +1,7 @@
 // nuxt.config.js
 module.exports = {
   mode: 'universal',
+
   head: {
     title: 'Dreaming In Code',
     meta: [
@@ -9,6 +10,7 @@ module.exports = {
       { hid: 'description', name: 'description', content: 'Where dreamers come to learn' }
     ]
   },
+
   build: {
     extend: (config) => {
       const svgRule = config.module.rules.find(rule => rule.test.test('.svg'));
@@ -20,15 +22,18 @@ module.exports = {
         use: ['babel-loader', 'vue-svg-loader'],
       });
     },
-    vendor: ['axios'],
     publicPath: `/${require('./secrets.json').NODE_ENV}/_nuxt/` // <= add the path to the cached files
   },
+
   srcDir: 'client/',
+
   performance: {
     gzip: false
   },
+
   router: {
     base: `/`
   },
+
   dev: false
 }

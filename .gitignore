@@ -4,5 +4,8 @@ jspm_packages
 
 # Serverless directories
 .serverless
+
 .idea
 .nuxt
+
+secrets.json

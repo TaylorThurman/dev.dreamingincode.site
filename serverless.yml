@@ -1,5 +1,5 @@
 # serverless.yml
-service: serverless-side-rendering-vue-nuxt
+service: dreaming-in-code-frontend
 
 provider:
   name: aws
@@ -32,4 +32,4 @@ custom:
     stage: ${self:custom.secrets.NODE_ENV}
     createRoute53Record: true
     endpointType: 'regional'
-    certificateArn: "arn:aws:acm:us-east-2:696101305486:certificate/4e7ba749-bb3f-451a-87bb-93824a32f9c0"
+    certificateArn: ${self:custom.secrets.CERT_ARN}
